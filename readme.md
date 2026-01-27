@@ -22,3 +22,39 @@ Deactivate virtual env
 | Traditional Way     | Modern Way |
 | ------------------- | ---------- |
 |         venv        |      uv    |
+
+### Data Types
+
+#### Mutable and Immutable
+
+Everything is object in Python.
+
+Object -> identity -> value -> type
+***Note:*** Never check with the value. Check with the identity.
+
+**Mutable:** Is Changeable.
+
+```python
+spice_mix = set()
+print(f"Initial spice mix: {id(spice_mix)}") # Initial spice mix: 4311179424
+
+spice_mix.add("Ginger")
+spice_mix.add("Cardamom")
+print(f"After spice mix: {id(spice_mix)}") # After spice mix: 4311179424
+```
+
+**Immutable:** Is Not Changeable. Change the reference.
+
+```python
+sugar_amount = 2
+print(f"Initial sugar amount: {sugar_amount}")
+
+sugar_amount = 12
+print(f"Second Initial sugar amount: {sugar_amount}")
+
+
+print(f"ID of 2: {id(2)}") # ID of 2: 4368924944
+print(f"ID of 12: {id(12)}") #ID of 12: 4368925264
+```
+
+The whole concept of mutable and immutable is what value can change and what cannot change in the *memory itself*.
