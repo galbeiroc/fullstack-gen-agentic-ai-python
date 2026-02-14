@@ -121,3 +121,46 @@ print(f"Flavor strength: {flavor_strength}")
 total_tea_leaves_harvested = 1_000_000_000
 print(f"Tea leaves harvested: {total_tea_leaves_harvested}")  # Output: 1000000000
 ```
+
+#### Boolean
+
+Boolean is a data type that can only have one of two values: `True` or `False`. Boolean is case senstive, lowercase will cause an error.
+
+```python
+is_boiling = True
+stri_count = 5
+print(f"Total actions: {is_boiling + stri_count}") # Total actions 6
+
+milk_present = 0
+print(f"Is there milk? {bool(milk_present)}") # Is there milk? False
+```
+
+##### Logical Operators
+
+You can combine Booleans to create more complex logic.
+
+- `and`: Returns True only if both sides are true.
+- `or`: Returns True if at least one side is true.
+- `not`: Reverses the result (True becomes False).
+
+```python
+is_sunny = True
+is_warm = False
+
+print(is_sunny and is_warm) # False (because it's not warm)
+print(is_sunny or is_warm)  # True (because at least one is true)
+print(not is_sunny)         # False
+```
+
+##### Comparison Operators
+
+Most Booleans are created when you compare two values.
+
+| Operator | Meaning          | Example  | Result  |
+| :------- | :--------------- | :------- | :------ |
+| `==`     | Equal to         | `5 == 5` | `True`  |
+| `!=`     | Not equal to     | `5 != 3` | `True`  |
+| `>`      | Greater than     | `5 > 10` | `False` |
+| `<`      | Less than        | `5 < 10` | `True`  |
+| `>=`     | Greater or equal | `5 >= 5` | `True`  |
+| `<=`     | Less or equal    | `3 <= 2` | `False` |
