@@ -235,3 +235,45 @@ print(f"Garlic ratio: {garlic_ratio}, Patatoes ratio: {potatoes_ratio}")
 print(f"Is Garlic in vegetables? {'Garlic' in  vegetables}") # False
 print(f"Is Carrots in vegetables? {'Carrots' in  vegetables}") # True
 ```
+
+#### List -> Mutable []
+
+a List is a collection of items that is ordered and changeable (mutable).
+
+```python
+ingredients = ["water", "milk", "black tea"]
+ingredients.append("sugar")
+print(f"Ingredients are {ingredients}") # ['water', 'milk', 'black tea', 'sugar']
+
+ingredients.remove("milk")
+print(f"Ingredients are {ingredients}") # ['water', 'black tea', 'sugar']
+
+spice_options = ["ginger", "cardamon"]
+ingredients.extend(spice_options)
+print(f"Chai Ingredients: {ingredients}") # ['water', 'black tea', 'sugar', 'ginger', 'cardamon']
+
+print(f"The water is the position: {ingredients[0]}") # water
+
+ingredients.insert(1, "milk")
+print(f"Chai with milk ingredients: {ingredients}") # ['water', 'milk', 'black tea', 'sugar', 'ginger']
+
+last_ingredient = ingredients.pop()
+print(f"Last ingredient: {last_ingredient}") # cardamon
+print(f"Chai Ingredients: {ingredients}") # ['water', 'milk', 'black tea', 'sugar', 'ginger']
+
+ingredients.reverse()
+print(f"Reversed ingredients {ingredients}") # ['ginger', 'sugar', 'black tea', 'milk', 'water']
+
+ingredients.sort()
+print(f"Sorted ingredients {ingredients}") # ['black tea', 'ginger', 'milk', 'sugar', 'water']
+
+sugar_levels = [2, 5, 1, 4, 3]
+print(f"Max sugar levels: {max(sugar_levels)}") # 5
+print(f"Min sigar level: {min(sugar_levels)}") # 1
+print(f"Total sugar levels: {sum(sugar_levels)}") # 15
+
+print(f"Slicing sugar levels: {sugar_levels[0:3]}") # [2, 5, 1]
+print(f"Slicing sugar levels: {sugar_levels[2:]}") # [1, 4, 3]
+print(f"Slicing sugar levels: {sugar_levels[:2]}") # [2, 5]
+print(f"Slicing sugar levels: {sugar_levels[1:4:2]}") # [5, 4]
+```
