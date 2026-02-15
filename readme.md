@@ -164,3 +164,52 @@ Most Booleans are created when you compare two values.
 | `<`      | Less than        | `5 < 10` | `True`  |
 | `>=`     | Greater or equal | `5 >= 5` | `True`  |
 | `<=`     | Less or equal    | `3 <= 2` | `False` |
+
+#### Strings
+
+a String (str) is how we handle text.
+**Single quotes**: `'Hello'`
+**Double quotes**: `"Python is fun"`
+**Triple quotes**: `'''This is a multi-line string'''` (Useful for long paragraphs or documentation).
+
+```python
+chai_type = "Ginger chai"
+customer_name = "Almendra"
+
+print(f"Order for {customer_name} : {chai_type} please!")
+
+print(f"{customer_name[0]}") # A
+
+chai_description = "Aromatic and Bold"
+print(f"First word: {chai_description[0:8]}") # First word: Aromatic
+print(f"Last word: {chai_description[12:]}") # Last word Bold
+print(f"Jump word: {chai_description[0:8:3]}") # jump each character 3 'Ami'
+
+print(f"Reverse string {chai_description[::-1]}") # Reverse string dloB dna citamorA
+
+label_text = "Spécial Character"
+enconded_text = label_text.encode("utf-8")
+print(f"None Encoded text: {label_text}") # Spécial Character
+print(f"Encoded text: {enconded_text}") # b'Sp\xc3\xa9cial Character'
+print(f"Decoded text: {enconded_text.decode('utf-8')}") # Spécial Character
+```
+
+##### String Methods
+
+| Method       | What it does                 | Example                                   |
+| :----------- | :--------------------------- | :---------------------------------------- |
+| `.upper()`   | Makes everything uppercase   | `"hi".upper()` -> `"HI"`                  |
+| `.lower()`   | Makes everything lowercase   | `"HI".lower()` -> `"hi"`                  |
+| `.strip()`   | Removes whitespace from ends | `"  cool  ".strip()` -> `"cool"`          |
+| `.replace()` | Swaps text                   | `"Java".replace("J", "P")` -> `"Pava"`    |
+| `.split()`   | Breaks string into a list    | `"a,b,c".split(",")` -> `['a', 'b', 'c']` |
+
+##### f-Strings (The Best Way to Format)
+
+The most modern and readable way to put variables inside strings is using f-strings (formatted strings). Just put an f before the quotes and use {} for your variables.
+
+```python
+ame = "galbeiroc"
+lessons = 5
+print(f"Hi {name}, you have completed {lessons} lessons!")
+```
