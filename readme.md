@@ -315,3 +315,32 @@ list_of_numbers = bytearray([65, 66, 67])
 list_of_numbers[0] = 68
 print(list_of_numbers) # bytearray(b'DEF')
 ```
+
+#### Set
+
+a Set is an unordered collection of unique items. To create an empty set, you must use `set()`.
+
+```python
+essential_spices = {"cardamon", "ginger", "cinnamon"}
+optional_spices = {"cloves", "black pepper", "ginger"}
+
+# Union |
+all_spices = essential_spices | optional_spices
+print(f"All spices: {all_spices}") # All spices: {'ginger', 'cinnamon', 'cloves', 'black pepper', 'cardamon'}
+
+# Intersection &
+common_spices = essential_spices & optional_spices
+print(f"Common spices: {common_spices}") # Common spices: {'ginger'}
+
+# Difference -
+only_essential_spice = essential_spices - optional_spices
+print(f"Only essential spices: {only_essential_spice}") # Only essential spices: {'cinnamon', 'cardamon'}
+
+# Symmetric Difference ^
+exclusive_spices = essential_spices ^ optional_spices
+print(f"Exclusive spices: {exclusive_spices}") # Exclusive spices: {'cloves', 'black pepper', 'cinnamon', 'cardamon'}
+
+# Membership testing
+print(f"Is cloves in essentials spices {'cloves' in essential_spices}") # Is cloves in essentials spices False
+print(f"Is cloves in optional spices {'cloves' in optional_spices}") # Is cloves in optional spices True
+```
