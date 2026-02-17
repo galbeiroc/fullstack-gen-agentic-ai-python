@@ -344,3 +344,40 @@ print(f"Exclusive spices: {exclusive_spices}") # Exclusive spices: {'cloves', 'b
 print(f"Is cloves in essentials spices {'cloves' in essential_spices}") # Is cloves in essentials spices False
 print(f"Is cloves in optional spices {'cloves' in optional_spices}") # Is cloves in optional spices True
 ```
+
+#### Dictionary -> Mutable {}
+
+a Dictionary is an unordered collection of key-value pairs.
+
+```python
+computer_order = dict(type="laptop", size=14, vendor="hp")
+print(f"Computer order: {computer_order}") # Computer order: {'type': 'laptop', 'size': 14, 'vendor': 'hp'}
+
+user_profile = {}
+user_profile['name'] = "galbeiroc"
+user_profile['role'] = "admin"
+user_profile["years_exp"] = 5
+print(f"User profile: {user_profile}") # User profile: {'name': 'galbeiroc', 'role': 'admin', 'years_exp': 5}
+print(f"User name {user_profile['name']}")
+
+del user_profile['years_exp'] # User name galbeiroc
+print(f"User profile: {user_profile}") # User profile: {'name': 'galbeiroc', 'role': 'admin'}
+
+print(f"User profile (keys): {user_profile.keys()}") # User profile (keys): dict_keys(['name', 'role'])
+print(f"User profile (values): {user_profile.values()}") # User profile (values): dict_values(['galbeiroc', 'admin'])
+print(f"User profile (items): {user_profile.items()}") # User profile (items): dict_items([('name', 'galbeiroc'), ('role', 'admin')])
+
+last_item = computer_order.popitem()
+print(f"Last item: {last_item}") # Last item: ('vendor', 'hp')
+print(f"Computer order: {computer_order}") # Computer order: {'type': 'laptop', 'size': 14}
+
+new_user_properties = {"skills": ["JS", "Python"], "email": "test@email.com"}
+user_profile.update(new_user_properties)
+print(f"Update user profile: {user_profile}") # User profile: {'name': 'galbeiroc', 'role': 'admin', 'skills': ['JS', 'Python'], 'email': 'test@email.com'}
+
+getting_user_password = user_profile.get("password", "default_password")
+print(f"Getting user password: {getting_user_password}") # Getting user password: default_password
+
+# Membership
+print(f"Is name in user_profile? {'name' in user_profile}") # Is name in user_profile? True
+```
