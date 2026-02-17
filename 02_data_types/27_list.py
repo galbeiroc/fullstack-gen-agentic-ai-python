@@ -33,3 +33,19 @@ print(f"Slicing sugar levels: {sugar_levels[0:3]}")
 print(f"Slicing sugar levels: {sugar_levels[2:]}")
 print(f"Slicing sugar levels: {sugar_levels[:2]}")
 print(f"Slicing sugar levels: {sugar_levels[1:4:2]}")
+
+base_liquid = ["water", "milk"]
+extra_flavor = ["ginger"]
+full_liquid_mix = base_liquid + extra_flavor
+print(f"Full liquid mix: {full_liquid_mix}")
+
+strong_brew = ["black tea", "water"] * 3
+print(f"Strong brew: {strong_brew}")
+
+raw_spice_data = bytearray(b"Cinnamon")
+raw_spice_data = raw_spice_data.replace(b"Cinn", b"Card")
+print(f"Raw spice data: {raw_spice_data}")
+
+list_of_numbers = bytearray([65, 66, 67])
+list_of_numbers[0] = 68
+print(list_of_numbers)
