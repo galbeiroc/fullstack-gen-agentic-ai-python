@@ -381,3 +381,54 @@ print(f"Getting user password: {getting_user_password}") # Getting user password
 # Membership
 print(f"Is name in user_profile? {'name' in user_profile}") # Is name in user_profile? True
 ```
+
+### Conditional Statements
+
+Python's Conditionals will feel very familiar, though the "punctuation" is a bit different.
+
+In Python, we don't use curly braces `{}` or parentheses `()` for conditions. Instead, we use a colon `(:)` and indentation.
+
+The Structure: `if`, `elif`, and `else`
+
+```python
+cpu_usage = 85
+
+if cpu_usage > 90:
+  print("Alert: Critical usage!")
+else:
+  print("OK: CPU usage is normal.")
+```
+
+#### Ternary Operator
+
+**Syntax**: value_if_true `if` _condition_ `else` value_if_false
+
+```python
+order_amount = int(input("Enter the order amout: "))
+
+delivery_fees = 0 if order_amount > 300 else 30
+
+print(f"Delivery fees is: {delivery_fees}")
+# 301 -> Delivery fees is: 0
+# 299 -> Delivery fees is: 30
+```
+
+#### Match Case
+
+Since Python 3.10, there is a `match` statement which is similar to `switch` in other languages.
+
+```python
+seat_type = input("Enter seat type: (sleeper/AC/general/luxury): ").lower()
+
+match seat_type:
+  case "sleeper":
+    print("Sleeper - No AC, beds available")
+  case "ac":
+    print("AC - Air conditioned, comfy ride")
+  case "genreral":
+    print("General - Cheapest option, no reservation")
+  case "luxury":
+    print("Luxury - Premium seats with meals")
+  case _:
+    print("Invalid seat type")
+```
