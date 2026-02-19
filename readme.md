@@ -381,3 +381,20 @@ print(f"Getting user password: {getting_user_password}") # Getting user password
 # Membership
 print(f"Is name in user_profile? {'name' in user_profile}") # Is name in user_profile? True
 ```
+
+### Conditional Statements
+
+Python's Conditionals will feel very familiar, though the "punctuation" is a bit different.
+
+In Python, we don't use curly braces `{}` or parentheses `()` for conditions. Instead, we use a colon `(:)` and indentation.
+
+The Structure: `if`, `elif`, and `else`
+
+```python
+cpu_usage = 85
+
+if cpu_usage > 90:
+  print("Alert: Critical usage!")
+else:
+  print("OK: CPU usage is normal.")
+```
