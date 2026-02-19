@@ -398,3 +398,17 @@ if cpu_usage > 90:
 else:
   print("OK: CPU usage is normal.")
 ```
+
+#### Ternary Operator
+
+**Syntax**: value_if_true `if` _condition_ `else` value_if_false
+
+```python
+order_amount = int(input("Enter the order amout: "))
+
+delivery_fees = 0 if order_amount > 300 else 30
+
+print(f"Delivery fees is: {delivery_fees}")
+# 301 -> Delivery fees is: 0
+# 299 -> Delivery fees is: 30
+```
