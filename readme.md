@@ -412,3 +412,23 @@ print(f"Delivery fees is: {delivery_fees}")
 # 301 -> Delivery fees is: 0
 # 299 -> Delivery fees is: 30
 ```
+
+#### Match Case
+
+Since Python 3.10, there is a `match` statement which is similar to `switch` in other languages.
+
+```python
+seat_type = input("Enter seat type: (sleeper/AC/general/luxury): ").lower()
+
+match seat_type:
+  case "sleeper":
+    print("Sleeper - No AC, beds available")
+  case "ac":
+    print("AC - Air conditioned, comfy ride")
+  case "genreral":
+    print("General - Cheapest option, no reservation")
+  case "luxury":
+    print("Luxury - Premium seats with meals")
+  case _:
+    print("Invalid seat type")
+```
