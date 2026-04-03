@@ -439,6 +439,50 @@ match seat_type:
 - Loops through sequences using `range()`, `enumerate()` and `zip()`
 - Control loop behavior using `break`, `continue` and `else` clauses
 
+#### For Loops
+
+A `for` loop is used for iterating over a sequence (that is either a _list_, a _tuple_, a _dictionary_, a _set_, or a _string_).
+
+```python
+orders = ["Rodri", "Samuel", "Rose", "Salome"]
+
+for order in orders:
+  print(f"Order ready for: {order}") # Order ready for: Rodri, Order ready for: Samuel, Order ready for: Rose, Order ready for: Salome
+```
+
+##### The break Statement
+
+With the break statement we can stop the loop before it has looped through all the items:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x) # "apple", "banana"
+  if x == "banana":
+    break
+```
+
+##### The continue Statement
+
+With the continue statement we can stop the current iteration of the loop, and continue with the next:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x) # "apple", "cherry"
+```
+
+##### The pass Statement
+
+`for` loops cannot be empty, but if you for some reason have a `for` loop with no content, put in the `pass` statement to avoid getting an error.
+
+```python
+for x in [0, 1, 2]:
+  pass
+```
+
 #### The range()
 
 The `range()` function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
