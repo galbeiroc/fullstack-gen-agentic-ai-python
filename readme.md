@@ -432,3 +432,28 @@ match seat_type:
   case _:
     print("Invalid seat type")
 ```
+
+### Loops
+
+- Use `for` and `while` loops
+- Loops through sequences using `range()`, `enumerate()` and `zip()`
+- Control loop behavior using `break`, `continue` and `else` clauses
+
+#### The range()
+
+The `range()` function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
+`range(start, stop, step)`
+
+- `start`: Optional. An integer number specifying at which position to start. Default is 0
+- `stop`: Required. An integer number specifying at which position to stop (not included).
+- `step`: Optional. An integer number specifying the incrementation. Default is 1
+
+```python
+y = range(3, 6)
+for n in y:
+  print(n) # 3, 4, 5
+
+x = range(3, 20, 2)
+for n in x:
+  print(n) # 3, 5, 7, 9, 11, 13, 15, 17, 19
+```
