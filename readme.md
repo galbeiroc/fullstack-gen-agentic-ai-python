@@ -544,3 +544,17 @@ bills = [50, 75, 100, 60]
 for name, amount in zip(names, bills):
   print(f"{name} paid ${amount} dollars") # Albeiro paid $50 dollars, Liam paid $75 dollars, Alice paid $100 dollars, Veroco paid $60 dollars
 ```
+
+#### While Loops
+
+With the `while` loop we can execute a set of statements as long as a condition is true.
+
+```python
+temperature=40
+
+while temperature < 100:
+  print(f"Current temperature: {temperature}")
+  temperature += 15
+
+print("Tea is ready to boil")
+```
