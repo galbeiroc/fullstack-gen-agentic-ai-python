@@ -501,3 +501,25 @@ x = range(3, 20, 2)
 for n in x:
   print(n) # 3, 5, 7, 9, 11, 13, 15, 17, 19
 ```
+
+#### The enumerate()
+
+The `enumerate()` function takes a collection (e.g. a tuple) and returns it as an enumerate object.
+The `enumerate()` function adds a counter as the key of the enumerate object.
+`enumerate(iterable, start)`
+
+- `iterable` - An iterable object
+- `start` - A Number. Defining the start number of the enumerate object. Default 0
+
+```python
+x = ('apple', 'banana', 'cherry')
+y = enumerate(x)
+
+print(list(y)) # [(0, 'apple'), (1, 'banana'), (2, 'cherry')]
+
+
+menu = ["Green", "Spiced", "Lemon", "Mint"]
+
+for idx, item in enumerate(menu, start=1):
+  print(f"Menu item #{idx}: {item} tea") # Menu item #1: Green tea, Menu item #2: Spiced tea, Menu item #3: Lemon tea, Menu item #4: Mint tea
+```
