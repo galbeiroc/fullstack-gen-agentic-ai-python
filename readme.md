@@ -483,7 +483,7 @@ for x in [0, 1, 2]:
   pass
 ```
 
-#### The range()
+##### The range()
 
 The `range()` function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
 `range(start, stop, step)`
@@ -502,7 +502,7 @@ for n in x:
   print(n) # 3, 5, 7, 9, 11, 13, 15, 17, 19
 ```
 
-#### The enumerate()
+##### The enumerate()
 
 The `enumerate()` function takes a collection (e.g. a tuple) and returns it as an enumerate object.
 The `enumerate()` function adds a counter as the key of the enumerate object.
@@ -522,4 +522,25 @@ menu = ["Green", "Spiced", "Lemon", "Mint"]
 
 for idx, item in enumerate(menu, start=1):
   print(f"Menu item #{idx}: {item} tea") # Menu item #1: Green tea, Menu item #2: Spiced tea, Menu item #3: Lemon tea, Menu item #4: Mint tea
+```
+
+##### zip()
+
+The `zip()` function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together, and then the second item in each passed iterator are paired together etc.
+`zip(iterator1, iterator2, iterator3 ...)`
+
+```python
+a = ("John", "Charles", "Mike")
+b = ("Jenny", "Christy", "Monica", "Vicky")
+
+x = zip(a, b)
+
+print(tuple(x)) # (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
+print(list(x)) # [('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
+
+names = ["Albeiro", "Liam", "Alice", "Veroco"]
+bills = [50, 75, 100, 60]
+
+for name, amount in zip(names, bills):
+  print(f"{name} paid ${amount} dollars") # Albeiro paid $50 dollars, Liam paid $75 dollars, Alice paid $100 dollars, Veroco paid $60 dollars
 ```
