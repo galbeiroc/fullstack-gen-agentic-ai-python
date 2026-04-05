@@ -450,37 +450,25 @@ for order in orders:
   print(f"Order ready for: {order}") # Order ready for: Rodri, Order ready for: Samuel, Order ready for: Rose, Order ready for: Salome
 ```
 
-##### The break Statement
+##### Else in For Loop
 
-With the break statement we can stop the loop before it has looped through all the items:
+The else keyword in a for loop specifies a block of code to be executed when the loop is finished:
 
 ```python
-fruits = ["apple", "banana", "cherry"]
-for x in fruits:
-  print(x) # "apple", "banana"
-  if x == "banana":
+for x in range(6):
+  print(x) # 0, 1, 2, 3, 4, 5
+else:
+  print("Finally finished!") # Finally finished!
+
+
+staff = [("Amit", 16), ("Zara", 17), ("Rafa", 15)]
+
+for name, age in staff:
+  if age >= 18:
+    print(f"{name} is eligible to manage staff")
     break
-```
-
-##### The continue Statement
-
-With the continue statement we can stop the current iteration of the loop, and continue with the next:
-
-```python
-fruits = ["apple", "banana", "cherry"]
-for x in fruits:
-  if x == "banana":
-    continue
-  print(x) # "apple", "cherry"
-```
-
-##### The pass Statement
-
-`for` loops cannot be empty, but if you for some reason have a `for` loop with no content, put in the `pass` statement to avoid getting an error.
-
-```python
-for x in [0, 1, 2]:
-  pass
+else:
+  print(f"No one  is eligible to manage staff") # No one  is eligible to manage staff
 ```
 
 ##### The range()
@@ -557,4 +545,37 @@ while temperature < 100:
   temperature += 15
 
 print("Tea is ready to boil")
+```
+
+#### The break Statement
+
+With the break statement we can stop the loop before it has looped through all the items:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x) # "apple", "banana"
+  if x == "banana":
+    break
+```
+
+#### The continue Statement
+
+With the continue statement we can stop the current iteration of the loop, and continue with the next:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x) # "apple", "cherry"
+```
+
+#### The pass Statement
+
+`for` loops cannot be empty, but if you for some reason have a `for` loop with no content, put in the `pass` statement to avoid getting an error.
+
+```python
+for x in [0, 1, 2]:
+  pass
 ```
