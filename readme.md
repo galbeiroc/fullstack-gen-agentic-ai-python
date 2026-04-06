@@ -579,3 +579,28 @@ for x in fruits:
 for x in [0, 1, 2]:
   pass
 ```
+
+#### Walrus Operator :=
+
+Python 3.8 introduced the `:=` operator, known as the "walrus operator". It assigns values to variables as part of a larger expression:
+
+```python
+value = 14
+""" remainder = value % 5
+
+if remainder:
+  print(f"Not divisible by 5, remainder is {remainder}") """
+
+if (remainder := value % 5):
+  print(f"Not divisible by 5, remainder is {remainder}")
+
+if (n := len(a)) > 10:
+    print(f"List is too long ({n} elements, expected <= 10)")
+
+available_sizes = ["small", "medium", "large"]
+
+if (size := input("What size do you want? ")) in available_sizes:
+  print(f"Great, we have {size} size available")
+else:
+  print(f"Sorry, we don't have {size} size available")
+```
