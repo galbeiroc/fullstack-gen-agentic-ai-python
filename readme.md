@@ -432,3 +432,175 @@ match seat_type:
   case _:
     print("Invalid seat type")
 ```
+
+### Loops
+
+- Use `for` and `while` loops
+- Loops through sequences using `range()`, `enumerate()` and `zip()`
+- Control loop behavior using `break`, `continue` and `else` clauses
+
+#### For Loops
+
+A `for` loop is used for iterating over a sequence (that is either a _list_, a _tuple_, a _dictionary_, a _set_, or a _string_).
+
+```python
+orders = ["Rodri", "Samuel", "Rose", "Salome"]
+
+for order in orders:
+  print(f"Order ready for: {order}") # Order ready for: Rodri, Order ready for: Samuel, Order ready for: Rose, Order ready for: Salome
+```
+
+##### Else in For Loop
+
+The else keyword in a for loop specifies a block of code to be executed when the loop is finished:
+
+```python
+for x in range(6):
+  print(x) # 0, 1, 2, 3, 4, 5
+else:
+  print("Finally finished!") # Finally finished!
+
+
+staff = [("Amit", 16), ("Zara", 17), ("Rafa", 15)]
+
+for name, age in staff:
+  if age >= 18:
+    print(f"{name} is eligible to manage staff")
+    break
+else:
+  print(f"No one  is eligible to manage staff") # No one  is eligible to manage staff
+```
+
+##### The range()
+
+The `range()` function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and stops before a specified number.
+`range(start, stop, step)`
+
+- `start`: Optional. An integer number specifying at which position to start. Default is 0
+- `stop`: Required. An integer number specifying at which position to stop (not included).
+- `step`: Optional. An integer number specifying the incrementation. Default is 1
+
+```python
+y = range(3, 6)
+for n in y:
+  print(n) # 3, 4, 5
+
+x = range(3, 20, 2)
+for n in x:
+  print(n) # 3, 5, 7, 9, 11, 13, 15, 17, 19
+```
+
+##### The enumerate()
+
+The `enumerate()` function takes a collection (e.g. a tuple) and returns it as an enumerate object.
+The `enumerate()` function adds a counter as the key of the enumerate object.
+`enumerate(iterable, start)`
+
+- `iterable` - An iterable object
+- `start` - A Number. Defining the start number of the enumerate object. Default 0
+
+```python
+x = ('apple', 'banana', 'cherry')
+y = enumerate(x)
+
+print(list(y)) # [(0, 'apple'), (1, 'banana'), (2, 'cherry')]
+
+
+menu = ["Green", "Spiced", "Lemon", "Mint"]
+
+for idx, item in enumerate(menu, start=1):
+  print(f"Menu item #{idx}: {item} tea") # Menu item #1: Green tea, Menu item #2: Spiced tea, Menu item #3: Lemon tea, Menu item #4: Mint tea
+```
+
+##### zip()
+
+The `zip()` function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together, and then the second item in each passed iterator are paired together etc.
+`zip(iterator1, iterator2, iterator3 ...)`
+
+```python
+a = ("John", "Charles", "Mike")
+b = ("Jenny", "Christy", "Monica", "Vicky")
+
+x = zip(a, b)
+
+print(tuple(x)) # (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
+print(list(x)) # [('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
+
+names = ["Albeiro", "Liam", "Alice", "Veroco"]
+bills = [50, 75, 100, 60]
+
+for name, amount in zip(names, bills):
+  print(f"{name} paid ${amount} dollars") # Albeiro paid $50 dollars, Liam paid $75 dollars, Alice paid $100 dollars, Veroco paid $60 dollars
+```
+
+#### While Loops
+
+With the `while` loop we can execute a set of statements as long as a condition is true.
+
+```python
+temperature=40
+
+while temperature < 100:
+  print(f"Current temperature: {temperature}")
+  temperature += 15
+
+print("Tea is ready to boil")
+```
+
+#### The break Statement
+
+With the break statement we can stop the loop before it has looped through all the items:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x) # "apple", "banana"
+  if x == "banana":
+    break
+```
+
+#### The continue Statement
+
+With the continue statement we can stop the current iteration of the loop, and continue with the next:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x) # "apple", "cherry"
+```
+
+#### The pass Statement
+
+`for` loops cannot be empty, but if you for some reason have a `for` loop with no content, put in the `pass` statement to avoid getting an error.
+
+```python
+for x in [0, 1, 2]:
+  pass
+```
+
+#### Walrus Operator :=
+
+Python 3.8 introduced the `:=` operator, known as the "walrus operator". It assigns values to variables as part of a larger expression:
+
+```python
+value = 14
+""" remainder = value % 5
+
+if remainder:
+  print(f"Not divisible by 5, remainder is {remainder}") """
+
+if (remainder := value % 5):
+  print(f"Not divisible by 5, remainder is {remainder}")
+
+if (n := len(a)) > 10:
+    print(f"List is too long ({n} elements, expected <= 10)")
+
+available_sizes = ["small", "medium", "large"]
+
+if (size := input("What size do you want? ")) in available_sizes:
+  print(f"Great, we have {size} size available")
+else:
+  print(f"Sorry, we don't have {size} size available")
+```
