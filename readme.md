@@ -604,3 +604,18 @@ if (size := input("What size do you want? ")) in available_sizes:
 else:
   print(f"Sorry, we don't have {size} size available")
 ```
+
+### Functions
+
+A function is a block of code which only runs when it is called.
+A function can return data as a result.
+A function helps avoiding code repetition.
+
+In Python, a function is defined using the `def` keyword, followed by a function name and parentheses:
+
+```python
+def my_function():
+  print("Hello from a function")
+```
+
+To call a function, write its name followed by parentheses: `my_function()`
