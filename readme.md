@@ -679,3 +679,20 @@ def update_order():
 
 update_order()
 ```
+
+##### Global Keyword
+
+If you need to create a global variable, but are stuck in the local scope, you can use the `global` keyword.
+
+```python
+order_type = "Burger" # Global scope
+
+def front_desk():
+  def kitchen():
+    global order_type
+    order_type = "Pasta"
+  kitchen()
+
+front_desk()
+print(f"Global variable: {order_type}") # Global variable: Pasta
+```
