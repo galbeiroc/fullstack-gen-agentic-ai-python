@@ -619,3 +619,43 @@ def my_function():
 ```
 
 To call a function, write its name followed by parentheses: `my_function()`
+
+#### Scopes
+
+A variable is only available from inside the region it is created. This is called scope.
+
+##### Local Scope
+
+A variable created inside a function belongs to the _local scope_ of that function, and can only be used inside that function.
+
+##### Enclosing Scope or Function Inside Function
+
+As explained in the example above, the variable `x` is not available outside the function, but it is available for any function inside the function.
+
+##### Global Scope
+
+A variable created in the main body of the Python code is a global variable and belongs to the global scope.
+Global variables are available from within any scope, global and local.
+
+```python
+def serve_drink():
+  drink_type = "Soda" #. Local scope
+  print(f"Inside Serving {drink_type}...")
+
+drink_type = "Water"
+serve_drink()
+print(f"Outside Serving {drink_type}...")
+
+
+def drink_counter():
+  drink_ordered = "Lemonade" # Enclosing scope
+  def print_order():
+    drink_ordered = "Juice"
+    print(f"Inner function: {drink_ordered}")
+  print_order()
+  print(f"Outer function: {drink_ordered}")
+
+drink_ordered = "Beer" # Global scope
+drink_counter()
+print(f"Global variable: {drink_ordered}")
+```
