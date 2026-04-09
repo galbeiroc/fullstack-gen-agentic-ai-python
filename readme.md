@@ -639,23 +639,43 @@ Global variables are available from within any scope, global and local.
 
 ```python
 def serve_drink():
-  drink_type = "Soda" #. Local scope
-  print(f"Inside Serving {drink_type}...")
+  drink_type = "Soda" # -> Local scope
+  print(f"Inside Serving {drink_type}...") # Inside Serving Soda...
 
 drink_type = "Water"
 serve_drink()
-print(f"Outside Serving {drink_type}...")
+print(f"Outside Serving {drink_type}...") # Outside Serving Water...
 
 
 def drink_counter():
-  drink_ordered = "Lemonade" # Enclosing scope
+  drink_ordered = "Lemonade" # -> Enclosing scope
   def print_order():
     drink_ordered = "Juice"
-    print(f"Inner function: {drink_ordered}")
+    print(f"Inner function: {drink_ordered}") # Outer function: Juice
   print_order()
-  print(f"Outer function: {drink_ordered}")
+  print(f"Outer function: {drink_ordered}") # Outer function: Lemonade
 
-drink_ordered = "Beer" # Global scope
+drink_ordered = "Beer" # -> Global scope
 drink_counter()
-print(f"Global variable: {drink_ordered}")
+print(f"Global variable: {drink_ordered}") # Global variable: Beer
+```
+
+##### Nonlocal Keyword
+
+The `nonlocal` keyword is used to work with variables inside nested functions.
+The `nonlocal` keyword makes the variable belong to the outer function.
+
+```python
+def update_order():
+  order_type = "Pizza"
+
+  def kitchen():
+    nonlocal order_type ##
+    order_type = "Pasta"
+    print(f"Inside Kitchen: {order_type}") # Inside Kitchen: Pasta
+
+  kitchen()
+  print(f"Outside Kitchen: {order_type}") # Outside Kitchen: Pasta
+
+update_order()
 ```
