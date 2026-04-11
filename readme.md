@@ -799,3 +799,57 @@ def my_function(a, b, /, *, c, d):
 result = my_function(5, 10, c = 15, d = 20)
 print(result) # 50
 ```
+
+#### Arbitrary Arguments - *args
+
+If you do not know how many arguments that will be passed into your function, add a `*` before the parameter name in the function definition.
+This way the function will receive a _tuple_ of arguments, and can access the items accordingly:
+
+```python
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "galbeiroc") # The youngest child is galbeiroc
+```
+
+##### What is *args?
+
+The `*args` parameter allows a function to accept any number of positional arguments.
+Inside the function, `args` becomes a _tuple_ containing all the arguments:
+
+```python
+def my_function(*args):
+  print("Type:", type(args)) # <class 'tuple'>
+  print("First argument:", args[0]) # First argument: galbeiroc
+  print("Second argument:", args[1]) # Second argument: Tobias
+  print("All arguments:", args) # All arguments: ('galbeiroc', 'Tobias', 'Linus')
+
+my_function("galbeiroc", "Tobias", "Linus")
+```
+
+#### Arbitrary Keyword Arguments - **kwargs
+
+If you do not know how many keyword arguments that will be passed into your function, add two asterisk: `**`  before the parameter name.
+This way, the function will receive a _dictionary_ of arguments and can access the items accordingly:
+
+```python
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes") # His last name is Refsnes
+```
+
+##### What is **kwargs?
+
+The `**kwargs` parameter allows a function to accept any number of keyword arguments.
+Inside the function, `kwargs` becomes a _dictionary_ containing all the keyword arguments:
+
+```python
+def my_function(**myvar):
+  print("Type:", type(myvar)) # <class 'dict'>
+  print("Name:", myvar["name"]) # Name: galbeiroc
+  print("Age:", myvar["age"]) # Age: 30
+  print("All data:", myvar) # All data: {'name': 'galbeiroc', 'age': 30, 'city': 'Bergen'}
+
+my_function(name = "galbeiroc", age = 30, city = "Bergen")
+```
