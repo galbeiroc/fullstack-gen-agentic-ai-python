@@ -696,3 +696,106 @@ def front_desk():
 front_desk()
 print(f"Global variable: {order_type}") # Global variable: Pasta
 ```
+
+#### Arguments
+
+Information can be passed into functions as arguments.
+Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+```python
+burger = "burger"
+
+def prepare_meal(order):
+  print(f"Preparing {order}...")
+
+prepare_meal(burger)
+print(f"{burger} is ready!")
+
+num_orders = [1, 2, 3]
+
+def update_orders(orders):
+  orders[1] = 42 # This will modify the original list passed as an argument
+
+update_orders(num_orders)
+print(num_orders)
+```
+
+#### Parameters vs Arguments
+
+A `parameter` is the variable listed inside the parentheses in the function definition.
+An `argument` is the actual value that is sent to the function when it is called.
+
+```python
+def my_function(name): # name is a parameter
+  print("Hello", name)
+
+my_function("galbeiroc") # "galbeiroc" is an argument
+```
+
+#### Default Parameter Values
+
+You can assign default values to parameters. If the function is called without an argument, it uses the default value:
+
+```python
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden") # I am from Sweden
+my_function() # I am from Norway
+```
+
+#### Keyword Arguments
+
+You can also send arguments with the `key = value` syntax.
+This way the order of the arguments does not matter.
+
+The phrase _Keyword Arguments_ is often shortened to **kwargs** in Python documentation.
+
+##### Keyword-Only Arguments
+
+To specify that a function can have only keyword arguments, add `*,` before the arguments:
+
+```python
+def my_function(*, name):
+  print("Hello", name)
+
+my_function(name="galbeiroc") # "galbeiroc" is a keyword argument
+```
+
+#### Positional Arguments
+
+When you call a function with arguments without using keywords, they are called positional arguments.
+Positional arguments must be in the correct order:
+
+```python
+def make_pizza(size, cheese, toppings):
+  print(f"Making a {size} pizza with {cheese} cheese and {toppings} toppings.")
+
+make_pizza("large", "mozzarella", ["pepperoni", "mushrooms"]) # Positional arguments
+make_pizza(size="medium", toppings=["olives", "onions"], cheese="cheddar") # Keyword arguments (order doesn't matter)
+```
+
+##### Positional-Only Arguments
+
+You can specify that a function can have ONLY positional arguments.
+To specify positional-only arguments, add `, /` after the arguments:
+
+```python
+def my_function(name, /):
+  print("Hello", name)
+
+my_function("galbeiroc") # "galbeiroc" is a positional argument
+```
+
+#### Combining Positional-Only and Keyword-Only
+
+You can combine both argument types in the same function.
+Arguments before `/` are positional-only, and arguments after `*` are keyword-only:
+
+```python
+def my_function(a, b, /, *, c, d):
+  return a + b + c + d
+
+result = my_function(5, 10, c = 15, d = 20)
+print(result) # 50
+```
