@@ -888,3 +888,69 @@ def my_function(**myvar):
 
 my_function(name = "galbeiroc", age = 30, city = "Bergen")
 ```
+
+#### Pure vs Impure Functions
+
+- **Pure Functions** - A pure function is a function that will return the same values given the same arguments.
+
+```python
+def pure_function(x):
+  return x * 2
+```
+
+- **Impure Functions** - A function is not pure if there is something outside the function that can change its return, given the same arguments.
+
+```python
+total_sales = 0
+
+def impure_function(x):
+  global total_sales
+  total_sales += 2
+```
+
+#### Recursion
+
+Python also accepts function recursion, which means a defined function can call itself.
+Recursion is a common mathematical and programming concept.
+
+```python
+def factorial(n):
+  # Base case
+  if n == 0 or n == 1:
+    return 1
+  # Recursive case
+  else:
+    return n * factorial(n - 1)
+
+print(factorial(5)) # 120
+```
+
+##### Recursion with Lists
+
+Recursion can be used to process lists by handling one element at a time:
+
+```python
+def sum_list(numbers):
+  if len(numbers) == 0:
+    return 0
+  else:
+    return numbers[0] + sum_list(numbers[1:])
+
+my_list = [1, 2, 3, 4, 5]
+print(sum_list(my_list)) # 15
+```
+
+#### Lambda Functions
+
+A lambda function is a small anonymous function.
+A lambda function can take any number of arguments, but can only have one expression.
+
+```python
+x = lambda a: a + 10
+print(x(5)) # 15
+
+drinks = ["coffee", "tea", "juice", "water", "tea", "soda"]
+
+filtered_drinks = list(filter(lambda drink: drink=="tea", drinks))
+print(filtered_drinks) # ['tea', 'tea']
+```
