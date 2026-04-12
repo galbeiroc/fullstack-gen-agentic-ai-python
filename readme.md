@@ -697,6 +697,41 @@ front_desk()
 print(f"Global variable: {order_type}") # Global variable: Pasta
 ```
 
+#### Return Values
+
+Functions can send data back to the code that called them using the `return` statement.
+When a function reaches a `return` statement, it stops executing and sends the result back:
+
+```python
+def get_name():
+  return "galbeiroc"
+
+my_name = get_name()
+print(my_name) # galbeiroc
+
+
+def add_numbers(a, b):
+  return a + b
+
+result = add_numbers(5, 7)
+print(result) # 12
+
+def make_coffee(cups_left):
+  if cups_left == 0:
+    return "No more coffee!"
+  return "Here's your coffee!"
+
+print(make_coffee(3)) # Here's your coffee!
+print(make_coffee(0)) # No more coffee!
+
+def report_coffee():
+  return 100, 20, 10
+
+total_cups, cups_left, _ = report_coffee()
+print("Sold out:", total_cups) # Sold out: 100
+print("Cups left:", cups_left) # Cups left: 20
+```
+
 #### Arguments
 
 Information can be passed into functions as arguments.
