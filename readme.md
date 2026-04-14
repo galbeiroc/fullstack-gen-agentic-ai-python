@@ -954,3 +954,26 @@ drinks = ["coffee", "tea", "juice", "water", "tea", "soda"]
 filtered_drinks = list(filter(lambda drink: drink=="tea", drinks))
 print(filtered_drinks) # ['tea', 'tea']
 ```
+
+### Import From Module
+
+You can choose to import only parts from a module, by using the `from` keyword.
+
+```python
+def greeting(name):
+  print("Hello, " + name)
+
+person = {
+  "name": "John",
+  "age": 36,
+  "country": "Doe"
+}
+```
+
+Import only the _person_ dictionary from the module:
+
+```python
+from mymodule import person
+
+print(person["age"]) # 36
+```
