@@ -272,6 +272,9 @@ print(f"Max sugar levels: {max(sugar_levels)}") # 5
 print(f"Min sigar level: {min(sugar_levels)}") # 1
 print(f"Total sugar levels: {sum(sugar_levels)}") # 15
 
+Slicing
+`[ start - (inclusive) : end - (exclusive)]`
+
 print(f"Slicing sugar levels: {sugar_levels[0:3]}") # [2, 5, 1]
 print(f"Slicing sugar levels: {sugar_levels[2:]}") # [1, 4, 3]
 print(f"Slicing sugar levels: {sugar_levels[:2]}") # [2, 5]
