@@ -272,6 +272,9 @@ print(f"Max sugar levels: {max(sugar_levels)}") # 5
 print(f"Min sigar level: {min(sugar_levels)}") # 1
 print(f"Total sugar levels: {sum(sugar_levels)}") # 15
 
+Slicing
+`[ start - (inclusive) : end - (exclusive)]`
+
 print(f"Slicing sugar levels: {sugar_levels[0:3]}") # [2, 5, 1]
 print(f"Slicing sugar levels: {sugar_levels[2:]}") # [1, 4, 3]
 print(f"Slicing sugar levels: {sugar_levels[:2]}") # [2, 5]
@@ -603,4 +606,377 @@ if (size := input("What size do you want? ")) in available_sizes:
   print(f"Great, we have {size} size available")
 else:
   print(f"Sorry, we don't have {size} size available")
+```
+
+### Functions
+
+A function is a block of code which only runs when it is called.
+A function can return data as a result.
+A function helps avoiding code repetition.
+
+In Python, a function is defined using the `def` keyword, followed by a function name and parentheses:
+
+```python
+def my_function():
+  print("Hello from a function")
+```
+
+To call a function, write its name followed by parentheses: `my_function()`
+
+#### Scopes
+
+A variable is only available from inside the region it is created. This is called scope.
+
+##### Local Scope
+
+A variable created inside a function belongs to the _local scope_ of that function, and can only be used inside that function.
+
+##### Enclosing Scope or Function Inside Function
+
+As explained in the example above, the variable `x` is not available outside the function, but it is available for any function inside the function.
+
+##### Global Scope
+
+A variable created in the main body of the Python code is a global variable and belongs to the global scope.
+Global variables are available from within any scope, global and local.
+
+```python
+def serve_drink():
+  drink_type = "Soda" # -> Local scope
+  print(f"Inside Serving {drink_type}...") # Inside Serving Soda...
+
+drink_type = "Water"
+serve_drink()
+print(f"Outside Serving {drink_type}...") # Outside Serving Water...
+
+
+def drink_counter():
+  drink_ordered = "Lemonade" # -> Enclosing scope
+  def print_order():
+    drink_ordered = "Juice"
+    print(f"Inner function: {drink_ordered}") # Outer function: Juice
+  print_order()
+  print(f"Outer function: {drink_ordered}") # Outer function: Lemonade
+
+drink_ordered = "Beer" # -> Global scope
+drink_counter()
+print(f"Global variable: {drink_ordered}") # Global variable: Beer
+```
+
+##### Nonlocal Keyword
+
+The `nonlocal` keyword is used to work with variables inside nested functions.
+The `nonlocal` keyword makes the variable belong to the outer function.
+
+```python
+def update_order():
+  order_type = "Pizza"
+
+  def kitchen():
+    nonlocal order_type ##
+    order_type = "Pasta"
+    print(f"Inside Kitchen: {order_type}") # Inside Kitchen: Pasta
+
+  kitchen()
+  print(f"Outside Kitchen: {order_type}") # Outside Kitchen: Pasta
+
+update_order()
+```
+
+##### Global Keyword
+
+If you need to create a global variable, but are stuck in the local scope, you can use the `global` keyword.
+
+```python
+order_type = "Burger" # Global scope
+
+def front_desk():
+  def kitchen():
+    global order_type
+    order_type = "Pasta"
+  kitchen()
+
+front_desk()
+print(f"Global variable: {order_type}") # Global variable: Pasta
+```
+
+#### Return Values
+
+Functions can send data back to the code that called them using the `return` statement.
+When a function reaches a `return` statement, it stops executing and sends the result back:
+
+```python
+def get_name():
+  return "galbeiroc"
+
+my_name = get_name()
+print(my_name) # galbeiroc
+
+
+def add_numbers(a, b):
+  return a + b
+
+result = add_numbers(5, 7)
+print(result) # 12
+
+def make_coffee(cups_left):
+  if cups_left == 0:
+    return "No more coffee!"
+  return "Here's your coffee!"
+
+print(make_coffee(3)) # Here's your coffee!
+print(make_coffee(0)) # No more coffee!
+
+def report_coffee():
+  return 100, 20, 10
+
+total_cups, cups_left, _ = report_coffee()
+print("Sold out:", total_cups) # Sold out: 100
+print("Cups left:", cups_left) # Cups left: 20
+```
+
+#### Arguments
+
+Information can be passed into functions as arguments.
+Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+```python
+burger = "burger"
+
+def prepare_meal(order):
+  print(f"Preparing {order}...")
+
+prepare_meal(burger)
+print(f"{burger} is ready!")
+
+num_orders = [1, 2, 3]
+
+def update_orders(orders):
+  orders[1] = 42 # This will modify the original list passed as an argument
+
+update_orders(num_orders)
+print(num_orders)
+```
+
+#### Parameters vs Arguments
+
+A `parameter` is the variable listed inside the parentheses in the function definition.
+An `argument` is the actual value that is sent to the function when it is called.
+
+```python
+def my_function(name): # name is a parameter
+  print("Hello", name)
+
+my_function("galbeiroc") # "galbeiroc" is an argument
+```
+
+#### Default Parameter Values
+
+You can assign default values to parameters. If the function is called without an argument, it uses the default value:
+
+```python
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden") # I am from Sweden
+my_function() # I am from Norway
+```
+
+#### Keyword Arguments
+
+You can also send arguments with the `key = value` syntax.
+This way the order of the arguments does not matter.
+
+The phrase _Keyword Arguments_ is often shortened to **kwargs** in Python documentation.
+
+##### Keyword-Only Arguments
+
+To specify that a function can have only keyword arguments, add `*,` before the arguments:
+
+```python
+def my_function(*, name):
+  print("Hello", name)
+
+my_function(name="galbeiroc") # "galbeiroc" is a keyword argument
+```
+
+#### Positional Arguments
+
+When you call a function with arguments without using keywords, they are called positional arguments.
+Positional arguments must be in the correct order:
+
+```python
+def make_pizza(size, cheese, toppings):
+  print(f"Making a {size} pizza with {cheese} cheese and {toppings} toppings.")
+
+make_pizza("large", "mozzarella", ["pepperoni", "mushrooms"]) # Positional arguments
+make_pizza(size="medium", toppings=["olives", "onions"], cheese="cheddar") # Keyword arguments (order doesn't matter)
+```
+
+##### Positional-Only Arguments
+
+You can specify that a function can have ONLY positional arguments.
+To specify positional-only arguments, add `, /` after the arguments:
+
+```python
+def my_function(name, /):
+  print("Hello", name)
+
+my_function("galbeiroc") # "galbeiroc" is a positional argument
+```
+
+#### Combining Positional-Only and Keyword-Only
+
+You can combine both argument types in the same function.
+Arguments before `/` are positional-only, and arguments after `*` are keyword-only:
+
+```python
+def my_function(a, b, /, *, c, d):
+  return a + b + c + d
+
+result = my_function(5, 10, c = 15, d = 20)
+print(result) # 50
+```
+
+#### Arbitrary Arguments - *args
+
+If you do not know how many arguments that will be passed into your function, add a `*` before the parameter name in the function definition.
+This way the function will receive a _tuple_ of arguments, and can access the items accordingly:
+
+```python
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "galbeiroc") # The youngest child is galbeiroc
+```
+
+##### What is *args?
+
+The `*args` parameter allows a function to accept any number of positional arguments.
+Inside the function, `args` becomes a _tuple_ containing all the arguments:
+
+```python
+def my_function(*args):
+  print("Type:", type(args)) # <class 'tuple'>
+  print("First argument:", args[0]) # First argument: galbeiroc
+  print("Second argument:", args[1]) # Second argument: Tobias
+  print("All arguments:", args) # All arguments: ('galbeiroc', 'Tobias', 'Linus')
+
+my_function("galbeiroc", "Tobias", "Linus")
+```
+
+#### Arbitrary Keyword Arguments - **kwargs
+
+If you do not know how many keyword arguments that will be passed into your function, add two asterisk: `**`  before the parameter name.
+This way, the function will receive a _dictionary_ of arguments and can access the items accordingly:
+
+```python
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes") # His last name is Refsnes
+```
+
+##### What is **kwargs?
+
+The `**kwargs` parameter allows a function to accept any number of keyword arguments.
+Inside the function, `kwargs` becomes a _dictionary_ containing all the keyword arguments:
+
+```python
+def my_function(**myvar):
+  print("Type:", type(myvar)) # <class 'dict'>
+  print("Name:", myvar["name"]) # Name: galbeiroc
+  print("Age:", myvar["age"]) # Age: 30
+  print("All data:", myvar) # All data: {'name': 'galbeiroc', 'age': 30, 'city': 'Bergen'}
+
+my_function(name = "galbeiroc", age = 30, city = "Bergen")
+```
+
+#### Pure vs Impure Functions
+
+- **Pure Functions** - A pure function is a function that will return the same values given the same arguments.
+
+```python
+def pure_function(x):
+  return x * 2
+```
+
+- **Impure Functions** - A function is not pure if there is something outside the function that can change its return, given the same arguments.
+
+```python
+total_sales = 0
+
+def impure_function(x):
+  global total_sales
+  total_sales += 2
+```
+
+#### Recursion
+
+Python also accepts function recursion, which means a defined function can call itself.
+Recursion is a common mathematical and programming concept.
+
+```python
+def factorial(n):
+  # Base case
+  if n == 0 or n == 1:
+    return 1
+  # Recursive case
+  else:
+    return n * factorial(n - 1)
+
+print(factorial(5)) # 120
+```
+
+##### Recursion with Lists
+
+Recursion can be used to process lists by handling one element at a time:
+
+```python
+def sum_list(numbers):
+  if len(numbers) == 0:
+    return 0
+  else:
+    return numbers[0] + sum_list(numbers[1:])
+
+my_list = [1, 2, 3, 4, 5]
+print(sum_list(my_list)) # 15
+```
+
+#### Lambda Functions
+
+A lambda function is a small anonymous function.
+A lambda function can take any number of arguments, but can only have one expression.
+
+```python
+x = lambda a: a + 10
+print(x(5)) # 15
+
+drinks = ["coffee", "tea", "juice", "water", "tea", "soda"]
+
+filtered_drinks = list(filter(lambda drink: drink=="tea", drinks))
+print(filtered_drinks) # ['tea', 'tea']
+```
+
+### Import From Module
+
+You can choose to import only parts from a module, by using the `from` keyword.
+
+```python
+def greeting(name):
+  print("Hello, " + name)
+
+person = {
+  "name": "John",
+  "age": 36,
+  "country": "Doe"
+}
+```
+
+Import only the _person_ dictionary from the module:
+
+```python
+from mymodule import person
+
+print(person["age"]) # 36
 ```
