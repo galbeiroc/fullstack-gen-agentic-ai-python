@@ -980,3 +980,14 @@ from mymodule import person
 
 print(person["age"]) # 36
 ```
+
+### Comprehensions
+
+Comprehensions are concise, single-line syntaxes used to generate new collections from existing iterables.
+lists
+sets
+dictionaries
+generators
+We can use it in: filter item, transform item, create a new collection, flatten nested structure.
+
+`[ expression for item in iterable if condition ]`
