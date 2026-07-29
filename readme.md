@@ -983,6 +983,8 @@ print(person["age"]) # 36
 
 ### Comprehensions
 
+#### List Comprehension
+
 Comprehensions are concise, single-line syntaxes used to generate new collections from existing iterables.
 lists
 sets
@@ -991,3 +993,21 @@ generators
 We can use it in: filter item, transform item, create a new collection, flatten nested structure.
 
 `[ expression for item in iterable if condition ]`
+
+```python
+new_squares = [x**2 for x in range(5) if x % 2 == 0]
+print(new_squares)
+```
+
+#### Set Comprehension
+
+`{ expression for item in iterable if condition }`
+
+```python
+favorite_drinks = [
+  "coffee", "tea", "juice", "milk", "coffee", "juice", 'water', "milk"
+]
+
+unique_drinks = { drink for drink in favorite_drinks }
+print(unique_drinks, type(unique_drinks)) # {'coffee', 'milk', 'juice', 'water', 'tea'} <class 'set'>
+```
