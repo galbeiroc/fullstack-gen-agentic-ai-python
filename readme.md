@@ -1011,3 +1011,18 @@ favorite_drinks = [
 unique_drinks = { drink for drink in favorite_drinks }
 print(unique_drinks, type(unique_drinks)) # {'coffee', 'milk', 'juice', 'water', 'tea'} <class 'set'>
 ```
+
+#### Dict Comprehension
+
+`{ key_expression: value_expression for item in iterable if condition }`
+
+```python
+drink_prices = {
+  "coffee": 4500,
+  "tea": 2000,
+  "lemonade": 3800
+}
+
+drink_prices_usd = {tea: price / 0.00031 for tea, price in drink_prices.items()}
+print(drink_prices_usd)
+```
