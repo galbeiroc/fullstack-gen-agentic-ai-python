@@ -1026,3 +1026,14 @@ drink_prices = {
 drink_prices_usd = {tea: price / 0.00031 for tea, price in drink_prices.items()}
 print(drink_prices_usd)
 ```
+
+#### Generator Comprehension
+
+`( expression for item in iterable if condition )`
+
+```python
+daily_sales = [5, 10, 12, 28, 4, 8, 15, 9]
+
+total_cups = sum(sale for sale in daily_sales if sale > 5)
+print(total_cups) # 82
+```
