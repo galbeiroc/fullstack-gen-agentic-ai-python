@@ -24,3 +24,6 @@ iced_tea = [tea for tea in menu if "Iced" in tea]
 len_char_tea = [my_tea for my_tea in menu if len(my_tea) >= 10]
 print(iced_tea)
 print(len_char_tea)
+
+number = [num for num in [5, 7, 10, 9, 6] if num > 6]
+print(number)
