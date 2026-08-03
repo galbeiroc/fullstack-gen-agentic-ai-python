@@ -980,3 +980,60 @@ from mymodule import person
 
 print(person["age"]) # 36
 ```
+
+### Comprehensions
+
+#### List Comprehension
+
+Comprehensions are concise, single-line syntaxes used to generate new collections from existing iterables.
+lists
+sets
+dictionaries
+generators
+We can use it in: filter item, transform item, create a new collection, flatten nested structure.
+
+`[ expression for item in iterable if condition ]`
+
+```python
+new_squares = [x**2 for x in range(5) if x % 2 == 0]
+print(new_squares)
+```
+
+#### Set Comprehension
+
+`{ expression for item in iterable if condition }`
+
+```python
+favorite_drinks = [
+  "coffee", "tea", "juice", "milk", "coffee", "juice", 'water', "milk"
+]
+
+unique_drinks = { drink for drink in favorite_drinks }
+print(unique_drinks, type(unique_drinks)) # {'coffee', 'milk', 'juice', 'water', 'tea'} <class 'set'>
+```
+
+#### Dict Comprehension
+
+`{ key_expression: value_expression for item in iterable if condition }`
+
+```python
+drink_prices = {
+  "coffee": 4500,
+  "tea": 2000,
+  "lemonade": 3800
+}
+
+drink_prices_usd = {tea: price / 0.00031 for tea, price in drink_prices.items()}
+print(drink_prices_usd)
+```
+
+#### Generator Comprehension
+
+`( expression for item in iterable if condition )`
+
+```python
+daily_sales = [5, 10, 12, 28, 4, 8, 15, 9]
+
+total_cups = sum(sale for sale in daily_sales if sale > 5)
+print(total_cups) # 82
+```
