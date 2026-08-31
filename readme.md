@@ -1027,7 +1027,7 @@ drink_prices_usd = {tea: price / 0.00031 for tea, price in drink_prices.items()}
 print(drink_prices_usd)
 ```
 
-#### Generator Comprehension
+#### Comprehension
 
 `( expression for item in iterable if condition )`
 
@@ -1036,4 +1036,29 @@ daily_sales = [5, 10, 12, 28, 4, 8, 15, 9]
 
 total_cups = sum(sale for sale in daily_sales if sale > 5)
 print(total_cups) # 82
+```
+
+### Generator and Decorator
+
+Generator is a special type of function that returns an iterable object, allowing you to produce a sequence of values one at a time on demand (lazy evaluation) instead of computing them all at once and saving them in memory.
+
+```python
+def serve_drink():
+  yield "Cup 1: Coffee"
+  yield "Cup 2: Tea"
+  yield "Cup 3: Chocolate"
+
+drinks = serve_drink()
+
+for cup in drinks:
+  print(cup)
+
+def get_cup_gen():
+  yield "Cup 1"
+  yield "Cup 2"
+  yield "Cup 3"
+
+cups = get_cup_gen()
+print(next(cups)) #Cup 1
+print(next(cups)) #Cup 2
 ```
