@@ -1041,6 +1041,7 @@ print(total_cups) # 82
 ### Generator and Decorator
 
 Generator is a special type of function that returns an iterable object, allowing you to produce a sequence of values one at a time on demand (lazy evaluation) instead of computing them all at once and saving them in memory.
+`yield` Pauses execution and remembers local variables
 
 ```python
 def serve_drink():
@@ -1061,4 +1062,26 @@ def get_cup_gen():
 cups = get_cup_gen()
 print(next(cups)) #Cup 1
 print(next(cups)) #Cup 2
+```
+
+#### Infinite Generator
+
+An infinite generator in Python is a special function that yields an endless stream of data using a `while` `True` loop and the `yield` keyword.
+
+```python
+def infinite_counter(start=0, step=1):
+  count = start
+  while True:
+    yield f"Count  #{count}"
+    count += step
+
+counter = infinite_counter()
+
+numbers = infinite_counter()
+
+for _ in range(3):
+  print(next(counter))
+
+for _ in range(6):
+  print(next(numbers))
 ```
