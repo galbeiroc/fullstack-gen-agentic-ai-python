@@ -1085,3 +1085,20 @@ for _ in range(3):
 for _ in range(6):
   print(next(numbers))
 ```
+
+To send a value to a Python generator, use the generator.send(value) method. This resumes the generator's execution and injects your value into the current yield expression.
+
+```python
+def drink_customer():
+  print("Welcome!, What drink do you like?")
+  order = yield
+  while True:
+    print(f"Preparing {order}")
+    order = yield
+
+drinks = drink_customer()
+next(drinks) # Start generator
+
+drinks.send("Coffee")
+drinks.send("Tea")
+```
