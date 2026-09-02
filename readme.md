@@ -1145,3 +1145,22 @@ print(next(stall)) # Starts generator, prints "Waiting for Coffee order"
 
 stall.close() #cleanup
 ```
+
+### Decorator
+
+A Python `decorator` is a design pattern that allows you to modify, extend, or enhance the behavior of a function or method without directly changing its source code.
+
+```python
+def my_decorator(func):
+  def wrapper():
+    print("Before function runs")
+    func()
+    print("After function runs")
+  return wrapper
+
+@my_decorator
+def greet():
+  print("Hello from decorators!")
+
+greet()
+```
