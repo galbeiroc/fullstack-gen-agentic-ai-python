@@ -1,5 +1,5 @@
 class Person:
-  name = 'galbeiroc'
+  name = 'Jhon'
 
 print(type(Person))
 
