@@ -1164,3 +1164,27 @@ def greet():
 
 greet()
 ```
+
+### Object Oriented Programming (OOP)
+
+Object-oriented programming (OOP) in Python helps you structure your code by grouping related data and behaviors into objects. You start by defining classes, which act as blueprints, and then create objects from them. OOP simplifies modeling real-world concepts in your programs and enables you to build systems that are more reusable and scalable.
+
+#### Namespace
+
+Every single object instance created from a class gets its own independent namespace.
+
+```python
+class Person:
+  name = 'galbeiroc'
+
+print(type(Person))
+
+Person.age = 36
+
+sam = Person()
+sam.name = "Sam"
+sam.age = 32
+
+print(Person.name, Person.age)
+print(sam.name, sam.age)
+```
