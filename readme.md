@@ -1228,3 +1228,63 @@ print(coffee.summary())
 lemonade = DrinkOrder("Lemonade", 250)
 print(lemonade.summary())
 ```
+
+#### Inheritance and Composition
+
+##### Inheritance
+
+Inheritance models what’s called an **is a** relationship.  This means that when you have a Derived class that inherits from a Base class, you’ve created a relationship where Derived **is a** specialized version of Base.
+at a high level `super()` gives you access to methods in a superclass from the subclass that inherits from it.
+
+`super()` alone returns a temporary object of the superclass that then allows you to call that superclass’s methods.
+
+```python
+class Employee:
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+
+  def describe(self):
+    print(f"{self.name} is responsible and kind!")
+
+class SalaryEmployee(Employee):
+  def __init__(self, id, name, weekly_salary):
+    super().__init__(id, name)
+    self.weekly_salary = weekly_salary
+
+  def calculate_payroll(self):
+    return self.weekly_salary
+```
+
+##### Composition
+
+Composition is a concept that models a `has a` relationship. It enables creating complex types by combining objects of other types. This means that a class Composite can contain an object of another class Component. This relationship means that a Composite `has a` Component.
+
+```python
+class Employee:
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+    self.address = None # Composite Attr
+
+  def describe(self):
+    print(f"{self.name} is responsible and kind!")
+
+class Address:
+  def __init__(self, street, city, state, zipcode):
+    self.street = street
+    self.city = city
+    self.state = state
+    self.zipcode = zipcode
+
+  def __str__(self):
+    lines = [self.street]
+    lines.append(f"{self.city}, {self.state}, {self.zipcode}")
+
+    return "\n".join(lines)
+
+
+address = Address("55 Main St.", "Concord", "NH", "03301")
+jhon = Employee(10, "Jhon")
+jhon.address = address
+```
