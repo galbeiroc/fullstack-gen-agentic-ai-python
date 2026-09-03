@@ -1027,7 +1027,7 @@ drink_prices_usd = {tea: price / 0.00031 for tea, price in drink_prices.items()}
 print(drink_prices_usd)
 ```
 
-#### Generator Comprehension
+#### Comprehension
 
 `( expression for item in iterable if condition )`
 
@@ -1036,4 +1036,131 @@ daily_sales = [5, 10, 12, 28, 4, 8, 15, 9]
 
 total_cups = sum(sale for sale in daily_sales if sale > 5)
 print(total_cups) # 82
+```
+
+### Generator and Decorator
+
+Generator is a special type of function that returns an iterable object, allowing you to produce a sequence of values one at a time on demand (lazy evaluation) instead of computing them all at once and saving them in memory.
+`yield` Pauses execution and remembers local variables
+
+```python
+def serve_drink():
+  yield "Cup 1: Coffee"
+  yield "Cup 2: Tea"
+  yield "Cup 3: Chocolate"
+
+drinks = serve_drink()
+
+for cup in drinks:
+  print(cup)
+
+def get_cup_gen():
+  yield "Cup 1"
+  yield "Cup 2"
+  yield "Cup 3"
+
+cups = get_cup_gen()
+print(next(cups)) #Cup 1
+print(next(cups)) #Cup 2
+```
+
+#### Infinite Generator
+
+An infinite generator in Python is a special function that yields an endless stream of data using a `while` `True` loop and the `yield` keyword.
+
+```python
+def infinite_counter(start=0, step=1):
+  count = start
+  while True:
+    yield f"Count  #{count}"
+    count += step
+
+counter = infinite_counter()
+
+numbers = infinite_counter()
+
+for _ in range(3):
+  print(next(counter))
+
+for _ in range(6):
+  print(next(numbers))
+```
+
+To send a value to a Python generator, use the generator.send(value) method. This resumes the generator's execution and injects your value into the current yield expression.
+
+```python
+def drink_customer():
+  print("Welcome!, What drink do you like?")
+  order = yield
+  while True:
+    print(f"Preparing {order}")
+    order = yield
+
+drinks = drink_customer()
+next(drinks) # Start generator
+
+drinks.send("Coffee")
+drinks.send("Tea")
+```
+
+#### The `yield from` Expression
+
+The `yield from` syntax allows a generator to delegate iteration to another generator, list, or iterable.
+
+```python
+def local_drink():
+  yield "Coffee"
+  yield "Tea"
+
+def imported_drink():
+  yield "Capuchino"
+  yield "Ice Tea"
+
+def full_drink_menu():
+  yield from local_drink()
+  yield from imported_drink()
+
+for drink in full_drink_menu():
+  print(drink)
+```
+
+#### The `.close()` Method
+
+The .`close()` method forces a generator to stop immediately. When called, it raises a GeneratorExit exception at the point where the generator was paused.
+
+- **Graceful Exit**: GeneratorExit bypasses standard except Exception: blocks because it inherits directly from BaseException.
+- **Cleanup Execution**: It triggers any code located inside finally blocks, allowing you to clean up resources like open files or sockets.
+- **Restriction**: A generator cannot yield any more values after catching a GeneratorExit; doing so will raise a RuntimeError.
+
+```python
+def coffee_stall():
+  try:
+    while True:
+      yield "Waiting for Coffee order"
+  except GeneratorExit:
+    print("Stall closed!")
+
+stall = coffee_stall()
+print(next(stall)) # Starts generator, prints "Waiting for Coffee order"
+
+stall.close() #cleanup
+```
+
+### Decorator
+
+A Python `decorator` is a design pattern that allows you to modify, extend, or enhance the behavior of a function or method without directly changing its source code.
+
+```python
+def my_decorator(func):
+  def wrapper():
+    print("Before function runs")
+    func()
+    print("After function runs")
+  return wrapper
+
+@my_decorator
+def greet():
+  print("Hello from decorators!")
+
+greet()
 ```
