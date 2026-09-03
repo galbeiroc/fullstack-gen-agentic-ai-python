@@ -1188,3 +1188,22 @@ sam.age = 32
 print(Person.name, Person.age)
 print(sam.name, sam.age)
 ```
+
+#### self (argument)
+
+In Python, `self` is a widely followed convention for naming the first argument in instance methods within a `class`. It represents the instance on which the method is being called, allowing access to instance _attributes_ and _methods_.
+
+```python
+class Employee:
+  name = "Jhon"
+
+  def describe(self):
+    return f"{self.name} is responsible and kind!"
+
+jhon = Employee()
+print(jhon.describe())
+
+sam = Employee()
+sam.name = "Sam"
+print(sam.describe())
+```
