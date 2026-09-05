@@ -1310,3 +1310,24 @@ cup = D()
 print(cup.label) # B: Coffee blen
 print(D.__mro__) # (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
 ```
+
+#### Static Method
+
+In Python, a static method is a method that belongs to a class but doesn’t operate on an instance or the class itself.
+You define a static method using the `@staticmethod` decorator. Static methods don’t receive an implicit self or cls argument. This means they can’t access or modify instance attributes or class attributes. You often use static methods for utility functions that logically belong to a class but don’t require access to any instance or class-level data.
+
+```python
+class Calculator:
+  @staticmethod
+  def add(a, b):
+    """Returb the sum of two numbers"""
+    return a + b
+
+  @staticmethod
+  def subtract(a, b):
+    """Returns the difference between two numbers"""
+    return a -b
+
+print(Calculator.add(5, 9))
+print(Calculator.subtract(17, 6))
+```
