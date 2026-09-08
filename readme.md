@@ -1432,3 +1432,49 @@ print(leaf.age)
 leaf.age = 5
 print(leaf.age)
 ```
+
+#### Polymorphism
+
+Polymorphism is a concept in object-oriented programming (OOP) that allows objects of different classes to be treated the same. It shifts the focus from data types to behaviors.
+Polymorphism enables you to use a single interface to represent different underlying classes. In Python, polymorphism is achieved primarily through duck typing, but you can also implement it through inheritance and method overriding.
+
+Polymorphism through duck typing.
+
+```python
+class Duck:
+  def swim(self):
+    print("The Ducks is swimming!")
+
+class Albatross:
+  def swim(self):
+    print("The Albatross is swimming!")
+
+birds = [Duck(), Albatross()]
+
+for bird in birds:
+  bird.swim()
+```
+
+Polymorphism through inheritance and method overriding.
+
+```python
+class Animal:
+  def speak(self):
+    print("Animals speak")
+
+class Dog(Animal):
+  def speak(self):
+    print("Woof, woof")
+
+class Cat(Animal):
+  def speak(self):
+    print("Meow, meow")
+
+def make_animal_speak(animal: Animal):
+  animal.speak()
+
+dog = Dog()
+cat = Cat()
+make_animal_speak(dog)
+make_animal_speak(cat)
+```
