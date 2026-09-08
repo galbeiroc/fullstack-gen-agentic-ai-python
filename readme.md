@@ -1380,6 +1380,55 @@ Implementing the getter and setter pattern requires:
 - _Making your attributes non-public_
 - _Writing getter and setter methods for each attribute_
 
+```python
+class Label:
+  def __init__(self, text, font):
+    self.text = text
+    self.font = font
+
+  def get_text(self):
+    return self.text
+
+  def set_text(self, text):
+    self.text = text
+
+  def get_font(self):
+    return self.font
+
+  def set_font(self, font):
+    self.font = font
+
+label = Label("Fruits", "Mono NL")
+print(label.get_text())
+label.set_text("Vegetables")
+print(label.text)
+```
+
+**Encapsulation** is another fundamental topic related to the origin of getter and setter methods. Essentially, this principle refers to bundling data with the methods that operate on that data. This way, access and mutation operations will be done through methods exclusively.
+The principle also has to do with restricting direct access to an object’s attributes, which will prevent exposing implementation details or violating state invariance.
+
 #### Using Properties Instead of Getters and Setters
 
 The Pythonic way to attach behavior to an attribute is to turn the attribute itself into a `property`. Properties pack together methods for getting, setting, deleting, and documenting the underlying data. Therefore, properties are special attributes with additional behavior.
+
+```python
+class TeaLeaf:
+  def __init__(self, age):
+    self._age = age
+
+  @property
+  def age(self):
+    return self._age
+
+  @age.setter
+  def age(self, age):
+    if 1 <= age <= 5:
+      self._age = age
+    else:
+      raise ValueError("Tea leaf age must be between 1 and 5 years")
+
+leaf = TeaLeaf(2)
+print(leaf.age)
+leaf.age = 5
+print(leaf.age)
+```
