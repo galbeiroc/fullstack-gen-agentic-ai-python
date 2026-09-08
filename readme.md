@@ -1367,3 +1367,19 @@ order2 = DrinkOrder.from_string("Tea, medium, small")
 print(order2.__dict__)
 print(order2.drink_type)
 ```
+
+#### Getter and Setter Methods
+
+- **Getter**: A method that allows you to access an attribute in a given class
+- **Setter**: A method that allows you to set or mutate the value of an attribute in a class
+
+In OOP, the getter and setter pattern suggests that public attributes should be used only when you’re sure that no one will ever need to attach behavior to them. If an attribute is likely to change its internal implementation, then you should use getter and setter methods.
+
+Implementing the getter and setter pattern requires:
+
+- _Making your attributes non-public_
+- _Writing getter and setter methods for each attribute_
+
+#### Using Properties Instead of Getters and Setters
+
+The Pythonic way to attach behavior to an attribute is to turn the attribute itself into a `property`. Properties pack together methods for getting, setting, deleting, and documenting the underlying data. Therefore, properties are special attributes with additional behavior.
