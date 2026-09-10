@@ -1164,3 +1164,317 @@ def greet():
 
 greet()
 ```
+
+### Object Oriented Programming (OOP)
+
+Object-oriented programming (OOP) in Python helps you structure your code by grouping related data and behaviors into objects. You start by defining classes, which act as blueprints, and then create objects from them. OOP simplifies modeling real-world concepts in your programs and enables you to build systems that are more reusable and scalable.
+
+#### Namespace
+
+Every single object instance created from a class gets its own independent namespace.
+
+```python
+class Person:
+  name = 'galbeiroc'
+
+print(type(Person))
+
+Person.age = 36
+
+sam = Person()
+sam.name = "Sam"
+sam.age = 32
+
+print(Person.name, Person.age)
+print(sam.name, sam.age)
+```
+
+#### self (argument)
+
+In Python, `self` is a widely followed convention for naming the first argument in instance methods within a `class`. It represents the instance on which the method is being called, allowing access to instance _attributes_ and _methods_.
+
+```python
+class Employee:
+  name = "Jhon"
+
+  def describe(self):
+    return f"{self.name} is responsible and kind!"
+
+jhon = Employee()
+print(jhon.describe())
+
+sam = Employee()
+sam.name = "Sam"
+print(sam.describe())
+```
+
+#### Constructor Method
+
+All classes have a built-in method called `__init__()`, which is always executed when the class is being initiated.
+
+The `__init__()` method is used to assign values to object properties, or to perform operations that are necessary when the object is being created.
+
+```python
+class DrinkOrder:
+  def __init__(self, name, size):
+    self.name = name
+    self.size = size
+
+  def summary(self):
+    return f"{self.size}ml of {self.name} drink."
+
+coffee = DrinkOrder("Coffee", 200)
+print(coffee.summary())
+lemonade = DrinkOrder("Lemonade", 250)
+print(lemonade.summary())
+```
+
+#### Inheritance and Composition
+
+##### Inheritance
+
+Inheritance models what’s called an **is a** relationship.  This means that when you have a Derived class that inherits from a Base class, you’ve created a relationship where Derived **is a** specialized version of Base.
+at a high level `super()` gives you access to methods in a superclass from the subclass that inherits from it.
+
+`super()` alone returns a temporary object of the superclass that then allows you to call that superclass’s methods.
+
+```python
+class Employee:
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+
+  def describe(self):
+    print(f"{self.name} is responsible and kind!")
+
+class SalaryEmployee(Employee):
+  def __init__(self, id, name, weekly_salary):
+    super().__init__(id, name)
+    self.weekly_salary = weekly_salary
+
+  def calculate_payroll(self):
+    return self.weekly_salary
+```
+
+##### Composition
+
+Composition is a concept that models a `has a` relationship. It enables creating complex types by combining objects of other types. This means that a class Composite can contain an object of another class Component. This relationship means that a Composite `has a` Component.
+
+```python
+class Employee:
+  def __init__(self, id, name):
+    self.id = id
+    self.name = name
+    self.address = None # Composite Attr
+
+  def describe(self):
+    print(f"{self.name} is responsible and kind!")
+
+class Address:
+  def __init__(self, street, city, state, zipcode):
+    self.street = street
+    self.city = city
+    self.state = state
+    self.zipcode = zipcode
+
+  def __str__(self):
+    lines = [self.street]
+    lines.append(f"{self.city}, {self.state}, {self.zipcode}")
+
+    return "\n".join(lines)
+
+
+address = Address("55 Main St.", "Concord", "NH", "03301")
+jhon = Employee(10, "Jhon")
+jhon.address = address
+```
+
+#### The Method Resolution Order (MRO)
+
+The method resolution order (MRO) is the order that Python follows to look up attributes and methods in a class hierarchy. It determines which method or attribute to use when names collide in multiple inheritance scenarios.
+
+```python
+class A:
+  label = "A: Base class"
+
+class B(A):
+  label = "B: Coffee blen"
+
+class C(A):
+  label = "C: Tea blen"
+
+class D(B, C):
+  pass
+
+cup = D()
+print(cup.label) # B: Coffee blen
+print(D.__mro__) # (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
+```
+
+#### Static Method
+
+In Python, a static method is a method that belongs to a class but doesn’t operate on an instance or the class itself.
+You define a static method using the `@staticmethod` decorator. Static methods don’t receive an implicit self or cls argument. This means they can’t access or modify instance attributes or class attributes. You often use static methods for utility functions that logically belong to a class but don’t require access to any instance or class-level data.
+
+```python
+class Calculator:
+  @staticmethod
+  def add(a, b):
+    """Returb the sum of two numbers"""
+    return a + b
+
+  @staticmethod
+  def subtract(a, b):
+    """Returns the difference between two numbers"""
+    return a -b
+
+print(Calculator.add(5, 9))
+print(Calculator.subtract(17, 6))
+```
+
+#### Class Method
+
+In Python, a class method is a method that belongs to its containing class rather than to any specific instance of the class.
+You can define this type of method using the `@classmethod` decorator. It should take the class itself as its first argument, conventionally named `cls`.
+Class methods can access and modify class state that applies across all instances of the class.
+
+```python
+class DrinkOrder:
+  def __init__(self, drink_type, sweetness, size):
+    self.drink_type = drink_type
+    self.sweetness = sweetness
+    self.size = size
+
+  @classmethod
+  def from_dict(cls, order_data):
+    return cls(
+      order_data["drink_type"],
+      order_data["sweetness"],
+      order_data["size"]
+    )
+
+  @classmethod
+  def from_string(cls, order_string):
+    drink_type, sweetness, size = order_string.split(",")
+    return cls(drink_type, sweetness, size)
+
+order1 = DrinkOrder.from_dict({ "drink_type": "Coffee", "sweetness": "low", "size": "medium" })
+
+print(order1.__dict__)
+print(order1.size)
+
+order2 = DrinkOrder.from_string("Tea, medium, small")
+print(order2.__dict__)
+print(order2.drink_type)
+```
+
+#### Getter and Setter Methods
+
+- **Getter**: A method that allows you to access an attribute in a given class
+- **Setter**: A method that allows you to set or mutate the value of an attribute in a class
+
+In OOP, the getter and setter pattern suggests that public attributes should be used only when you’re sure that no one will ever need to attach behavior to them. If an attribute is likely to change its internal implementation, then you should use getter and setter methods.
+
+Implementing the getter and setter pattern requires:
+
+- _Making your attributes non-public_
+- _Writing getter and setter methods for each attribute_
+
+```python
+class Label:
+  def __init__(self, text, font):
+    self.text = text
+    self.font = font
+
+  def get_text(self):
+    return self.text
+
+  def set_text(self, text):
+    self.text = text
+
+  def get_font(self):
+    return self.font
+
+  def set_font(self, font):
+    self.font = font
+
+label = Label("Fruits", "Mono NL")
+print(label.get_text())
+label.set_text("Vegetables")
+print(label.text)
+```
+
+**Encapsulation** is another fundamental topic related to the origin of getter and setter methods. Essentially, this principle refers to bundling data with the methods that operate on that data. This way, access and mutation operations will be done through methods exclusively.
+The principle also has to do with restricting direct access to an object’s attributes, which will prevent exposing implementation details or violating state invariance.
+
+#### Using Properties Instead of Getters and Setters
+
+The Pythonic way to attach behavior to an attribute is to turn the attribute itself into a `property`. Properties pack together methods for getting, setting, deleting, and documenting the underlying data. Therefore, properties are special attributes with additional behavior.
+
+```python
+class TeaLeaf:
+  def __init__(self, age):
+    self._age = age
+
+  @property
+  def age(self):
+    return self._age
+
+  @age.setter
+  def age(self, age):
+    if 1 <= age <= 5:
+      self._age = age
+    else:
+      raise ValueError("Tea leaf age must be between 1 and 5 years")
+
+leaf = TeaLeaf(2)
+print(leaf.age)
+leaf.age = 5
+print(leaf.age)
+```
+
+#### Polymorphism
+
+Polymorphism is a concept in object-oriented programming (OOP) that allows objects of different classes to be treated the same. It shifts the focus from data types to behaviors.
+Polymorphism enables you to use a single interface to represent different underlying classes. In Python, polymorphism is achieved primarily through duck typing, but you can also implement it through inheritance and method overriding.
+
+Polymorphism through duck typing.
+
+```python
+class Duck:
+  def swim(self):
+    print("The Ducks is swimming!")
+
+class Albatross:
+  def swim(self):
+    print("The Albatross is swimming!")
+
+birds = [Duck(), Albatross()]
+
+for bird in birds:
+  bird.swim()
+```
+
+Polymorphism through inheritance and method overriding.
+
+```python
+class Animal:
+  def speak(self):
+    print("Animals speak")
+
+class Dog(Animal):
+  def speak(self):
+    print("Woof, woof")
+
+class Cat(Animal):
+  def speak(self):
+    print("Meow, meow")
+
+def make_animal_speak(animal: Animal):
+  animal.speak()
+
+dog = Dog()
+cat = Cat()
+make_animal_speak(dog)
+make_animal_speak(cat)
+```
