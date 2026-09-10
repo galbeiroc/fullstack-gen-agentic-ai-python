@@ -1493,3 +1493,25 @@ except KeyError:
 
 print("Drink code")
 ```
+
+- try: Run the code
+- except: Execute the code when there is an exception
+- else: No exception? Run the code
+- finally: Always run the code
+
+```python
+def serve_drink(flavor):
+  try:
+    print(f"Preparing {flavor} drink...")
+    if flavor == "unknown":
+      raise ValueError("We dont know this flavor")
+  except ValueError as e:
+    print("Error: ", e)
+  else:
+    print(f"{flavor} drink served")
+  finally:
+    print("Next customer please...")
+
+serve_drink("coffee")
+serve_drink("unknown")
+```
