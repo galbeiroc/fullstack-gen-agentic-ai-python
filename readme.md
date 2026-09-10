@@ -1478,3 +1478,18 @@ cat = Cat()
 make_animal_speak(dog)
 make_animal_speak(cat)
 ```
+
+### Python Exceptions
+
+Python exceptions provide a mechanism for handling errors that occur during the execution of a program. Unlike syntax errors, which are detected by the parser, Python raises exceptions when an error occurs in syntactically correct code. Knowing how to raise, catch, and handle exceptions effectively helps to ensure your program behaves as expected, even when encountering errors.
+
+```python
+drink_menu = { "coffee": 25, "tea": 20 }
+
+try:
+  drink_menu["lemonade"]
+except KeyError:
+  print("The key that you are trying to access doesnt exits")
+
+print("Drink code")
+```
