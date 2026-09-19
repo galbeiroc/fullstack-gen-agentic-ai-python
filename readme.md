@@ -1515,3 +1515,33 @@ def serve_drink(flavor):
 serve_drink("coffee")
 serve_drink("unknown")
 ```
+
+#### Handle Multiple Errors
+
+```python
+def process_order(item, quantity):
+  try:
+    price = { "coffee": 20, "ginger": 15 }[item]
+    cost = price * quantity
+    print(f"Total cost is {cost}")
+  except KeyError:
+    print("Sorry that drink is not on menu")
+  except TypeError:
+    print("Quantity must be a number")
+
+process_order("lemonade", 2)
+process_order("coffee", bool)
+```
+
+#### Raise Errors
+
+In Python, the **raise** keyword allows you to trigger exceptions manually. You can use it to generate an error when a particular condition arises in your code, allowing you to handle exceptional situations gracefully.
+
+```python
+def prepare_drink(drink):
+  if drink not in ["Coffee", "Lemonade", "Tea"]:
+    raise ValueError("Unsupported drink...")
+  print(f"Preparing {drink} drink..")
+
+prepare_drink("Pepsi")
+```
