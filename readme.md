@@ -1545,3 +1545,20 @@ def prepare_drink(drink):
 
 prepare_drink("Pepsi")
 ```
+
+#### Custom Errors
+
+To create a custom exception, define a class that inherits from Python's built-in `Exception` class.
+
+```python
+class OutOfIngredientsError(Exception):
+  def __init__(self, message):
+    self.message = message
+
+def make_coffee(milk, sugar):
+  if milk == 0 or sugar == 0:
+    raise OutOfIngredientsError("Sugar or milk are missing!")
+  print("Coffee Ready...")
+
+make_coffee(0, 2)
+```
