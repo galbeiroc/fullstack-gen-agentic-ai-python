@@ -1562,3 +1562,43 @@ def make_coffee(milk, sugar):
 
 make_coffee(0, 2)
 ```
+
+#### File Handling
+
+File handling refers to the process of performing operations on a file, such as creating, opening, reading, writing and closing it through a programming interface. It involves managing the data flow between the program and the file system on the storage device, ensuring that data is handled safely and efficiently.
+To open a file, we can use `open()` function, which requires file-path and mode as arguments.
+
+`file = open('filename.txt', 'mode')`
+
+`file.close()` method closes the file and releases the system resources. If the file was opened in write or append mode, closing ensures that all changes are properly saved.
+
+```python
+# write file
+file = open("order.txt", "w")
+try:
+  file.write("Coffee drink - 2 Cups - 40 usd")
+finally:
+  file.close()
+
+# read file
+try:
+    file = open("order.txt", "r")
+    content = file.read()
+    print(content)
+except FileNotFoundError as e:
+    print("Error:", e)
+finally:
+    file.close()
+```
+
+##### Using with Statement
+
+Instead of manually opening and closing the file, you can use the with statement, with statement simplifies resource management by automatically handling setup and cleanup, ensuring files or connections close safely even if errors occur.
+
+- Replaces long _try-except–finally_ blocks with cleaner syntax.
+- Improves readability by reducing unnecessary boilerplate code.
+
+```python
+with open("order.txt", "w") as file:
+  file.write("Tea drink - 4 Cups - 20 usd")
+```
