@@ -1478,3 +1478,127 @@ cat = Cat()
 make_animal_speak(dog)
 make_animal_speak(cat)
 ```
+
+### Python Exceptions
+
+Python exceptions provide a mechanism for handling errors that occur during the execution of a program. Unlike syntax errors, which are detected by the parser, Python raises exceptions when an error occurs in syntactically correct code. Knowing how to raise, catch, and handle exceptions effectively helps to ensure your program behaves as expected, even when encountering errors.
+
+```python
+drink_menu = { "coffee": 25, "tea": 20 }
+
+try:
+  drink_menu["lemonade"]
+except KeyError:
+  print("The key that you are trying to access doesnt exits")
+
+print("Drink code")
+```
+
+- try: Run the code
+- except: Execute the code when there is an exception
+- else: No exception? Run the code
+- finally: Always run the code
+
+```python
+def serve_drink(flavor):
+  try:
+    print(f"Preparing {flavor} drink...")
+    if flavor == "unknown":
+      raise ValueError("We dont know this flavor")
+  except ValueError as e:
+    print("Error: ", e)
+  else:
+    print(f"{flavor} drink served")
+  finally:
+    print("Next customer please...")
+
+serve_drink("coffee")
+serve_drink("unknown")
+```
+
+#### Handle Multiple Errors
+
+```python
+def process_order(item, quantity):
+  try:
+    price = { "coffee": 20, "ginger": 15 }[item]
+    cost = price * quantity
+    print(f"Total cost is {cost}")
+  except KeyError:
+    print("Sorry that drink is not on menu")
+  except TypeError:
+    print("Quantity must be a number")
+
+process_order("lemonade", 2)
+process_order("coffee", bool)
+```
+
+#### Raise Errors
+
+In Python, the **raise** keyword allows you to trigger exceptions manually. You can use it to generate an error when a particular condition arises in your code, allowing you to handle exceptional situations gracefully.
+
+```python
+def prepare_drink(drink):
+  if drink not in ["Coffee", "Lemonade", "Tea"]:
+    raise ValueError("Unsupported drink...")
+  print(f"Preparing {drink} drink..")
+
+prepare_drink("Pepsi")
+```
+
+#### Custom Errors
+
+To create a custom exception, define a class that inherits from Python's built-in `Exception` class.
+
+```python
+class OutOfIngredientsError(Exception):
+  def __init__(self, message):
+    self.message = message
+
+def make_coffee(milk, sugar):
+  if milk == 0 or sugar == 0:
+    raise OutOfIngredientsError("Sugar or milk are missing!")
+  print("Coffee Ready...")
+
+make_coffee(0, 2)
+```
+
+#### File Handling
+
+File handling refers to the process of performing operations on a file, such as creating, opening, reading, writing and closing it through a programming interface. It involves managing the data flow between the program and the file system on the storage device, ensuring that data is handled safely and efficiently.
+To open a file, we can use `open()` function, which requires file-path and mode as arguments.
+
+`file = open('filename.txt', 'mode')`
+
+`file.close()` method closes the file and releases the system resources. If the file was opened in write or append mode, closing ensures that all changes are properly saved.
+
+```python
+# write file
+file = open("order.txt", "w")
+try:
+  file.write("Coffee drink - 2 Cups - 40 usd")
+finally:
+  file.close()
+
+# read file
+try:
+    file = open("order.txt", "r")
+    content = file.read()
+    print(content)
+except FileNotFoundError as e:
+    print("Error:", e)
+finally:
+    file.close()
+```
+
+##### Using with Statement
+
+Instead of manually opening and closing the file, you can use the with statement, with statement simplifies resource management by automatically handling setup and cleanup, ensuring files or connections close safely even if errors occur.
+
+- Replaces long _try-except–finally_ blocks with cleaner syntax.
+- Improves readability by reducing unnecessary boilerplate code.
+
+```python
+with open("order.txt", "w") as file:
+  file.write("Tea drink - 4 Cups - 20 usd")
+```
